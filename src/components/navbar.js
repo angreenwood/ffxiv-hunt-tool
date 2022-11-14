@@ -7,7 +7,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-export default function Example() {
+export default function Example(props) {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
