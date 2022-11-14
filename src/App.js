@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <>
+    <React.Fragment className="full">
       <NavBar />
       <Routes>
         <Route
@@ -40,7 +40,7 @@ function App() {
           element={<Help />}
         />
       </Routes>
-    </>
+    </React.Fragment>
   );
 }
 export default App;

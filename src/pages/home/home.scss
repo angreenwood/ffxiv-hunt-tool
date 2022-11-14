@@ -3,8 +3,9 @@
     margin:auto;
 }
 
+
 .title{
-    color: #00FFFF;
+    color: hsl(209, 71%, 44%);
     font-size:1.3rem;
     max-width:200px;
 }
@@ -14,16 +15,43 @@
     color:white;
 }
 .monster-border{
-    margin-top:15px;
-    border: 1px solid #00FFFF;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top:5px;
+    margin-bottom:40px;
+    border: 1px solid hsl(209, 71%, 44%);
     border-radius: 10%;
     padding:10px 0 10px 0;
-    min-height:280px;
-    min-width:280px;
+    min-height:350px !important;
+    min-width:280px !important;
 }
 
 .monster-img{
     max-width:250px;
     max-height:250px;
 }
+
+
+.zone{
+    text-decoration-color: hsl(209, 71%, 44%) !important;
+    text-decoration: underline;
+}
+
+.monster-section{
+    margin-top:5rem;
+}
+
+.searchbar{
+margin-top:30px;
+}
+
+.map-img{
+
+    object-fit: contain;
+}
+.dx-popup-content {
+    padding:0 !important;
+}
+
 
