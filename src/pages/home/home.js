@@ -16,16 +16,13 @@ export default function Home() {
   const [searchResult, setSearchResult] = useState([]);
   const [labyrinthos, setLabyrinthos] = useState([]);
   const [filteredLabyrinthos, setFilteredLabyrinthos] = useState([]);
-  const [thavnair, setThavnair] = useState([]);
-  const [filteredThavnair, setFilteredThavnair] = useState([]);
   const db = getFirestore();
   const colRef = collection(db, "monsters");
-  const monsterquery = query(colRef, where("zone", "==", "Labyrinthos"));
 
   const renderContent = (item) => {
     return (
       <div>
-      <h1>{localStorage.getItem("zone")}</h1>
+      <h1 className="zone-h1">{localStorage.getItem("zone")}</h1>
       <img
       src={'./images/maps/'+localStorage.getItem("map")}
       alt={"map"}
@@ -48,21 +45,13 @@ const hidePopup = () => {
     console.log(popup)
   }
   const getData = () => {
-    let monsters = [];
-    getDocs(monsterquery).then((snapshot) => {
+    let result = [];
+    getDocs(colRef).then((snapshot) => {
       snapshot.docs.forEach((doc) => {
-        monsters.push({ ...doc.data(), id: doc.id });
+        result.push({ ...doc.data(), id: doc.id });
       });
-      const findLabyrinthos = monsters.filter(
-        function(data){ return data.zone === 'Labyrinthos' }
-    );
-    const findThavnair = monsters.filter(
-      function(data){ return data.zone === 'Thavnair' }
-  );
-    
-    setLabyrinthos(findLabyrinthos);
-    setFilteredLabyrinthos(findLabyrinthos);
-    setThavnair(findThavnair);
+      setFilteredLabyrinthos(result)
+    setLabyrinthos(result);
     setLoading(false);
     });
   }
@@ -79,16 +68,12 @@ const hidePopup = () => {
       const findLabyrinthos = labyrinthos.filter(
         function(data){ return data.monster.toLowerCase().startsWith(targetValue) }
     );
-    const findThavanair = thavnair.filter(
-      function(data){ return data.monster.toLowerCase().startsWith(targetValue) }
-  );
     if(findLabyrinthos.length < 2){
       setColCount(1);
     } else{
       setColCount(findLabyrinthos.length);
     }
     setFilteredLabyrinthos(findLabyrinthos)
-    setFilteredThavnair(findThavanair)
     }else{
       setFilteredLabyrinthos(labyrinthos)
       setColCount(4);
