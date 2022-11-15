@@ -62,7 +62,7 @@ const hidePopup = () => {
 
   const handleChange = (e) => {
     const targetField = e.dataField
-    const targetValue = e.value
+    const targetValue = e.value.toLowerCase()
     console.log(targetField, targetValue)
     if(targetValue !== ''){
       const findLabyrinthos = labyrinthos.filter(
