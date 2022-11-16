@@ -14,8 +14,8 @@ export const links = [
   },
   {
     id: 3,
-    url: '/huntselection',
-    text: 'Routes',
+    url: '/characterlink',
+    text: 'Profile',
   },
   
 ]

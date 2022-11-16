@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
 import "./App.css";
 import NavBar from "./components/navbar";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/home";
-import HuntSelection from "./pages/huntSelection/huntSelection";
+import CharacterSearch from "./pages/characterLink/characterSearch";
+import CharacterStepper from "./pages/characterLink/characterStepper"
 import Help from "./pages/help/help";
 import { initializeApp } from "firebase/app";
 
@@ -24,7 +25,7 @@ function App() {
 
 
   return (
-    <React.Fragment className="full">
+    <React.Fragment>
       <NavBar />
       <Routes>
         <Route
@@ -33,7 +34,11 @@ function App() {
         />
         <Route
           path="/huntselection"
-          element={<HuntSelection />}
+          element={<Home />}
+        />
+        <Route
+          path="/characterlink"
+          element={<CharacterStepper />}
         />
         <Route
           path="/help"
