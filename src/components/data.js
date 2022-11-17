@@ -17,6 +17,11 @@ export const links = [
     url: '/characterlink',
     text: 'Profile',
   },
+  {
+    id: 4,
+    url: '/login',
+    text: 'Sign In',
+  },
   
 ]
 
@@ -36,5 +41,6 @@ export const social = [
     url: 'https://www.reddit.com/r/ffxiv/',
     icon: <FaRedditSquare />,
   },
+  
   
 ]

@@ -42,7 +42,7 @@ const Test = ({ handleBack, handleNext }) => {
       <img
         src={item.Avatar}
         alt={item.monster}
-        className="center monster-img"
+        className="center monster-img character-pic"
         
       />
       <h3 className="center title">{item.Name}</h3>
