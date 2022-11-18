@@ -5,14 +5,14 @@ import Form, {
   ButtonItem,
   ButtonOptions,
 } from 'devextreme-react/form';
-import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
+import { signInWithGoogleRedirect, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 
 import './LoginForm.scss';
 
 export default function LoginForm() {
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
+    const { user } = await signInWithGoogleRedirect();
     const userDocRef = await createUserDocumentFromAuth(user);
   }
   const navigate = useNavigate();

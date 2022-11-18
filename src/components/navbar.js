@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+
 import { GiHuntingHorn } from "react-icons/gi";
 import './navbar.scss'
 
@@ -14,7 +15,6 @@ export default function Example({user}) {
   const [openNav, setOpenNav] = useState(false);
  
   useEffect(() => {
-    console.log(user.displayName);
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
@@ -55,6 +55,21 @@ export default function Example({user}) {
           Profile
         </a>
       </Typography> : null}
+      {user ?  <Typography
+        as="li"
+        variant="small"
+      >
+        <a href="/" className="flex items-right">
+          Sign Out
+        </a>
+      </Typography> :  <Typography
+      as="li"
+      variant="small"
+    >
+      <a href="/login" className="flex items-right">
+        Sign In
+      </a>
+    </Typography>}
     </ul>
   );
  
@@ -70,14 +85,6 @@ export default function Example({user}) {
           <span className="nav-title"> <GiHuntingHorn size={42} className="horn"/> FFXIV Wiki Docs</span>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        {!user ? <a href="/login" className="flex items-center">
-        Sign In
-      </a>:  <div className="profile-div">
-      <img src={user.photoURL} alt="user_photo" className="user-photo"/>
-      <a href="/" className="flex items-center">
-      Sign Out
-    </a>
-      </div>}
         
         <IconButton
           variant="text"
