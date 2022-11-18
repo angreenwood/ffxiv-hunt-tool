@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 export default function Profile() {
-  const [user, setUser] = useState();
+  const { currentUser } = useContext(UserContext);
   useEffect(() => {
-    setUser(sessionStorage.getItem("User"));
+    console.log(currentUser);
   }, []);
   return (
-    <div>
-      <h1>{user}</h1>
+    <div className="App-header">
+      <h1>{currentUser.email}'s User Profile</h1>
     </div>
   );
 }

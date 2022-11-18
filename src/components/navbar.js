@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 import { GiHuntingHorn } from "react-icons/gi";
 import "./navbar.scss";
-
+import { Outlet, Link } from "react-router-dom";
 import {
   Navbar,
   MobileNav,
@@ -34,61 +34,75 @@ export default function Example() {
         as="li"
         variant="small"
       >
-        <a
-          href="/"
+        <Link
           className="flex items-center"
+          to="/"
         >
           Home
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
       >
-        <a
-          href="/huntselection"
+        <Link
+          to="/huntselection"
           className="flex items-center"
         >
           Search
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
         variant="small"
       >
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center"
         >
           Hunt
-        </a>
+        </Link>
       </Typography>
       {currentUser ? (
         <Typography
           as="li"
           variant="small"
         >
-          <a
-            href="/"
+          <Link
+            to="/profile"
+            className="flex items-center"
+          >
+            Profile
+          </Link>
+        </Typography>
+      ) : null}
+      {currentUser ? (
+        <Typography
+          as="li"
+          variant="small"
+        >
+          <Link
+            to="/"
             className="flex items-center"
             onClick={signOutHandler}
           >
             Sign Out
-          </a>
+          </Link>
         </Typography>
       ) : (
         <Typography
           as="li"
           variant="small"
         >
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="flex items-center"
           >
             Sign In
-          </a>
+          </Link>
         </Typography>
       )}
+      <Outlet />
     </ul>
   );
 
