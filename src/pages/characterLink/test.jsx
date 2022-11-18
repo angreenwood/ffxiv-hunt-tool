@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { LoadPanel } from "devextreme-react/load-panel";
-import Form, { Item, GroupItem, ColCountByScreen, Label,  ButtonItem, SimpleItem } from 'devextreme-react/form';
-import Button from '@mui/material/Button';
-import "./characterLink.scss"
+import Form, {
+  Item,
+  GroupItem,
+  ColCountByScreen,
+  Label,
+  ButtonItem,
+  SimpleItem,
+} from "devextreme-react/form";
+import Button from "@mui/material/Button";
+import "./characterLink.scss";
 
 const Test = ({ handleBack, handleNext }) => {
   const [serverList, setServerList] = useState({});
@@ -11,7 +18,10 @@ const Test = ({ handleBack, handleNext }) => {
     const character = localStorage.getItem("searchName");
     const server = localStorage.getItem("searchServer");
     fetch(
-      "https://xivapi.com/character/search?name="+character+"&server="+server
+      "https://xivapi.com/character/search?name=" +
+        character +
+        "&server=" +
+        server
     )
       .then((response) => response.json())
       .then((data) => {
@@ -26,40 +36,40 @@ const Test = ({ handleBack, handleNext }) => {
     type: "default",
     useSubmitBehavior: true,
     onClick: handleBack,
-
   };
 
   if (!loading && serverList.length > 0) {
     return (
-        <div className="App-header">
+      <div className="App-header">
         <Form className="monster-section">
-        <GroupItem colCount={4}>
-        <ColCountByScreen xs={1} sm={1} />
-      {serverList.map((item,i) => (
-
-        <Item key={i}>
-         <div className="monster-border">
-      <img
-        src={item.Avatar}
-        alt={item.monster}
-        className="center monster-img character-pic"
-        
-      />
-      <h3 className="center title">{item.Name}</h3>
-      <p className="center description">{item.Server}</p>
-    </div>
-        </Item>       
-  ))}
-     </GroupItem>
-     <ButtonItem
-              horizontalAlignment="right"
-              buttonOptions={buttonOptions}
+          <GroupItem colCount={4}>
+            <ColCountByScreen
+              xs={1}
+              sm={1}
             />
-     </Form>
-     </div>
+            {serverList.map((item, i) => (
+              <Item key={i}>
+                <div className="monster-border">
+                  <img
+                    src={item.Avatar}
+                    alt={item.monster}
+                    className="center monster-img character-pic"
+                  />
+                  <h3 className="center title">{item.Name}</h3>
+                  <p className="center description">{item.Server}</p>
+                </div>
+              </Item>
+            ))}
+          </GroupItem>
+          <ButtonItem
+            horizontalAlignment="right"
+            buttonOptions={buttonOptions}
+          />
+        </Form>
+      </div>
     );
-  } 
-  if(loading) {
+  }
+  if (loading) {
     return (
       <div>
         <LoadPanel
@@ -73,15 +83,18 @@ const Test = ({ handleBack, handleNext }) => {
       </div>
     );
   }
-  if(!loading && serverList.length === 0){
-    return(
-        <div className="error-msg">
+  if (!loading && serverList.length === 0) {
+    return (
+      <div className="error-msg">
         <h3 className="center title">No Results Found!</h3>
-        <Button onClick={handleBack} sx={{ mr: 1 }}>
-        Back
-      </Button>
-        </div>
-    )
+        <Button
+          onClick={handleBack}
+          sx={{ mr: 1 }}
+        >
+          Back
+        </Button>
+      </div>
+    );
   }
 };
 
