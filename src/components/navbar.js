@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { FaBars, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { GiHuntingHorn } from "react-icons/gi";
 import './navbar.scss'
 
@@ -48,7 +47,7 @@ export default function Example({user}) {
           Hunt
         </a>
       </Typography>
-      {user.displayName ?  <Typography
+      {user ?  <Typography
         as="li"
         variant="small"
       >
@@ -71,7 +70,7 @@ export default function Example({user}) {
           <span className="nav-title"> <GiHuntingHorn size={42} className="horn"/> FFXIV Wiki Docs</span>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        {!user.displayName ? <a href="/login" className="flex items-center">
+        {!user ? <a href="/login" className="flex items-center">
         Sign In
       </a>:  <div className="profile-div">
       <img src={user.photoURL} alt="user_photo" className="user-photo"/>
