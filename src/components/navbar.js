@@ -31,6 +31,9 @@ export default function Example() {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+  const handleLinkClick = () => {
+    setOpenNav(false);
+  };
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -41,6 +44,7 @@ export default function Example() {
         <Link
           className="flex items-center"
           to="/"
+          onClick={handleLinkClick}
         >
           Home
         </Link>
@@ -52,6 +56,7 @@ export default function Example() {
         <Link
           to="/huntselection"
           className="flex items-center"
+          onClick={handleLinkClick}
         >
           Search
         </Link>
@@ -63,6 +68,7 @@ export default function Example() {
         <Link
           to="/"
           className="flex items-center"
+          onClick={handleLinkClick}
         >
           Hunt
         </Link>
@@ -75,6 +81,7 @@ export default function Example() {
           <Link
             to="/profile"
             className="flex items-center"
+            onClick={handleLinkClick}
           >
             Profile
           </Link>
@@ -101,6 +108,7 @@ export default function Example() {
           <Link
             to="/login"
             className="flex items-center"
+            onClick={handleLinkClick}
           >
             Sign In
           </Link>
