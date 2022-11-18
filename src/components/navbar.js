@@ -22,6 +22,7 @@ export default function Example() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [openNav, setOpenNav] = useState(false);
   const signOutHandler = async () => {
+    setOpenNav(false);
     await signOutUser();
     setCurrentUser(null);
   };
