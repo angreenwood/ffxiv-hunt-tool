@@ -26,6 +26,7 @@ export default function Example() {
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
+    document.addEventListener("click", setOpenNav(false));
   }, []);
 
   const navList = (
