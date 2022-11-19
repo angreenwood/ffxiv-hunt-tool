@@ -58,11 +58,29 @@ export default function LoginForm() {
       switch (error.code) {
         case "auth/wrong-password":
           resetFormFields();
-          notify("Incorrect Username or Password", "warning", 5000);
+          notify(
+            {
+              message: "Incorrect username or password",
+              width: 300,
+              shading: false,
+              position: "top center",
+            },
+            "error",
+            3000
+          );
           break;
         case "auth/user-not-found":
           resetFormFields();
-          notify("User not found", "warning", 5000);
+          notify(
+            {
+              message: "User not found",
+              width: 300,
+              shading: false,
+              position: "top center",
+            },
+            "error",
+            3000
+          );
           break;
         default:
           console.log(error);
@@ -80,7 +98,7 @@ export default function LoginForm() {
   };
 
   const onCreateAccountClick = useCallback(() => {
-    navigate("/create-account");
+    navigate("/signup");
   }, [navigate]);
 
   const googleButtonOptions = {
@@ -93,7 +111,7 @@ export default function LoginForm() {
   const buttonOptions = {
     width: "100%",
     text: "Sign In",
-    type: "success",
+    type: "default",
     useSubmitBehavior: true,
     onClick: function () {
       handleSubmit();

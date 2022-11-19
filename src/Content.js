@@ -4,6 +4,7 @@ import CharacterStepper from "./pages/characterLink/characterStepper";
 import Help from "./pages/help/help";
 import LoginForm from "./pages/login/LoginForm";
 import Profile from "./pages/profile/profile";
+import SignUp from "./pages/signUp/signUp";
 export default function Content({ user }) {
   return (
     <Routes>
@@ -37,6 +38,10 @@ export default function Content({ user }) {
       <Route
         path="/profile"
         element={<Profile />}
+      />
+      <Route
+        path="/signup"
+        element={<SignUp />}
       />
     </Routes>
   );

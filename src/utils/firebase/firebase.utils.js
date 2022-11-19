@@ -45,7 +45,8 @@ export const createUserDocumentFromAuth = async (
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const displayName = userAuth.displayName;
+    const email = userAuth.email;
     const createdAt = new Date();
 
     try {
