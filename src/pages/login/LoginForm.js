@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { Link, useNavigate } from "react-router-dom";
+import GoogleButton from "react-google-button";
 import notify from "devextreme/ui/notify";
 import Form, {
   Item,
@@ -129,6 +130,11 @@ export default function LoginForm() {
             horizontalAlignment="right"
             buttonOptions={buttonOptions}
           />
+          <Item>
+            <div>
+              <Link to={"/reset-password"}>Forgot password?</Link>
+            </div>
+          </Item>
         </Form>
       </form>
       <form
@@ -136,18 +142,19 @@ export default function LoginForm() {
         onSubmit={logGoogleUser}
       >
         <Form>
-          <Item
-            itemType="button"
-            buttonOptions={googleButtonOptions}
-          />
           <Item>
-            <div className={"link"}>
-              <Link to={"/reset-password"}>Forgot password?</Link>
+            <div>
+              <GoogleButton
+                type="dark" // can be light or dark
+                onClick={() => {
+                  logGoogleUser();
+                }}
+              />
             </div>
           </Item>
           <ButtonItem>
             <ButtonOptions
-              text={"Create an account"}
+              text={"Create Account"}
               width={"100%"}
               onClick={onCreateAccountClick}
             />
