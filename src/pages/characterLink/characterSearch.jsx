@@ -45,7 +45,7 @@ const HuntSelection = ({ handleBack, handleNext }) => {
   };
   const buttonOptions = {
     text: "Search",
-    type: "success",
+    type: "default",
     useSubmitBehavior: true,
     onClick: function () {
       handleSubmit();
@@ -61,9 +61,11 @@ const HuntSelection = ({ handleBack, handleNext }) => {
   return (
     <div className="App">
       <div className="App-header">
+        <h3 className="page-title">Link FFXIV Character</h3>
         <form
           onSubmit={handleNext}
           action=""
+          className="character-search-form"
         >
           <Form
             colCount={1}
@@ -71,9 +73,6 @@ const HuntSelection = ({ handleBack, handleNext }) => {
             showValidationSummary={true}
             onFieldDataChanged={handleChange}
           >
-            <SimpleItem>
-              <h3 className="page-title">Link FFXIV Character</h3>
-            </SimpleItem>
             <SimpleItem
               dataField="CharacterName"
               editorType="dxTextBox"
