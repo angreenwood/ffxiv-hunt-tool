@@ -128,18 +128,22 @@ export default function Example() {
       <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4 nav-div">
         <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
           <Typography
-            as="a"
-            href="/"
             variant="small"
             className="mr-4 cursor-pointer py-1.5 font-normal"
           >
             <span className="nav-title">
               {" "}
-              <GiHuntingHorn
-                size={42}
-                className="horn"
-              />{" "}
-              FFXIV Wiki Docs
+              <Link
+                to="/"
+                className="flex items-center"
+                onClick={handleLinkClick}
+              >
+                <GiHuntingHorn
+                  size={42}
+                  className="horn"
+                />{" "}
+                FFXIV Wiki Docs
+              </Link>
             </span>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
