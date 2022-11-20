@@ -31,7 +31,6 @@ export default function Profile() {
       // doc.data() is never undefined for query doc snapshots
       setUser({ ...doc.data(), id: doc.id });
     });
-    console.log(user.displayName);
     setLoading(false);
   };
   useEffect(() => {
