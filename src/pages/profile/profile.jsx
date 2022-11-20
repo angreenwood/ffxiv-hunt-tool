@@ -28,7 +28,7 @@ export default function Profile() {
     const q = query(colRef, where("email", "==", currentUser.email));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
+      // doc.data() is never undefined for query doc snapshotss
       setUser({ ...doc.data(), id: doc.id });
     });
     setLoading(false);
