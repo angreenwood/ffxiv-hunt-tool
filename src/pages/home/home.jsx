@@ -34,8 +34,11 @@ export default function Home() {
 
   const renderContent = (item) => {
     return (
-      <div>
+      <div className="App-header">
         <h1 className="zone-h1">{localStorage.getItem("zone")}</h1>
+        <h1 className="monster-h1">
+          <em>{localStorage.getItem("monster")}</em>
+        </h1>
         <img
           src={"./images/maps/" + localStorage.getItem("map")}
           alt={"map"}
@@ -52,9 +55,8 @@ export default function Home() {
   const clicker = (item) => {
     localStorage.setItem("map", item.area_map);
     localStorage.setItem("zone", item.zone);
-    console.log(item.monster);
+    localStorage.setItem("monster", item.monster);
     setPopup(!popup);
-    console.log(popup);
   };
   const getData = () => {
     let result = [];

@@ -46,6 +46,7 @@ const HuntSelection = ({ handleBack, handleNext }) => {
   const buttonOptions = {
     text: "Search",
     type: "default",
+    width: "100%",
     useSubmitBehavior: true,
     onClick: function () {
       handleSubmit();
@@ -59,40 +60,38 @@ const HuntSelection = ({ handleBack, handleNext }) => {
   }, []);
 
   return (
-    <div className="App">
-      <div className="App-header">
-        <h3 className="page-title">Link FFXIV Character</h3>
-        <form
-          onSubmit={handleNext}
-          action=""
-          className="character-search-form"
+    <div className="App-header">
+      <h3 className="page-title">Link FFXIV Character</h3>
+      <form
+        onSubmit={handleNext}
+        action=""
+        className="character-search-form"
+      >
+        <Form
+          colCount={1}
+          formData={data}
+          showValidationSummary={true}
+          onFieldDataChanged={handleChange}
         >
-          <Form
-            colCount={1}
-            formData={data}
-            showValidationSummary={true}
-            onFieldDataChanged={handleChange}
+          <SimpleItem
+            dataField="CharacterName"
+            editorType="dxTextBox"
           >
-            <SimpleItem
-              dataField="CharacterName"
-              editorType="dxTextBox"
-            >
-              <RequiredRule message="Please enter your character name" />
-            </SimpleItem>
-            <SimpleItem
-              dataField="Server"
-              editorType="dxSelectBox"
-              editorOptions={serverOptions}
-            >
-              <RequiredRule message="Please select a server" />
-            </SimpleItem>
-            <ButtonItem
-              horizontalAlignment="right"
-              buttonOptions={buttonOptions}
-            />
-          </Form>
-        </form>
-      </div>
+            <RequiredRule message="Please enter your character name" />
+          </SimpleItem>
+          <SimpleItem
+            dataField="Server"
+            editorType="dxSelectBox"
+            editorOptions={serverOptions}
+          >
+            <RequiredRule message="Please select a server" />
+          </SimpleItem>
+          <ButtonItem
+            horizontalAlignment="right"
+            buttonOptions={buttonOptions}
+          />
+        </Form>
+      </form>
     </div>
   );
 };

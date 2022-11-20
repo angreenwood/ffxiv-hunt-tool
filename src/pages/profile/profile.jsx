@@ -5,8 +5,8 @@ export default function Profile() {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <div className="form-header">
-      <h1>{currentUser.email}'s User Profile</h1>
+    <div className="App-header">
+      <h3 className="page-title">Profile</h3>
       <Link
         to="/characterlink"
         className="flex items-center"

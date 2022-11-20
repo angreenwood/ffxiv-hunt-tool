@@ -57,6 +57,23 @@ margin-top:30px;
     text-align: center;
     font-size:2rem;
     padding:5px;
+    text-align: center;
+    color:hsl(209, 71%, 44%);
+}
+.monster-h1{
+    text-align: center;
+    font-size:1.2rem;
+    padding-bottom:5px;
+    text-align: center;
+}
+
+.dx-popup-title.dx-toolbar {
+    background-color: #282c34;
+    border-bottom: 1px solid hsl(209, 71%, 44%);
+}
+
+.dx-icon-close::before{
+    color:white;
 }
 
 
