@@ -1,7 +1,11 @@
+// react imports
 import React, { useCallback, useState, useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
 import { Link, useNavigate } from "react-router-dom";
+// user context import
+import { UserContext } from "../../contexts/user.context";
+// google sign in button import
 import GoogleButton from "react-google-button";
+// devextreme imports
 import notify from "devextreme/ui/notify";
 import Form, {
   Item,
@@ -11,27 +15,32 @@ import Form, {
   RequiredRule,
   EmailRule,
 } from "devextreme-react/form";
+// firebase import
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-
+// custom scss import
 import "./LoginForm.scss";
 
 export default function LoginForm() {
+  // init state
   const initialState = {
     UserName: "",
     Password: "",
   };
+  // init data for devextreme form
   const [data, setData] = useState(initialState);
+  // declare navigate for react router
   const navigate = useNavigate();
+  // declare functionality for reset button for devextreme form
   const resetFormFields = () => {
     setData(initialState);
   };
-
+  // declare current user object from user context
   const { setCurrentUser } = useContext(UserContext);
-
+  // declare google popup functionality - signs user in and sets user context to google account details. This also will create a user object in the firestore 'users' collection. Upon success, user will be navigated to home page.
   const logGoogleUser = async () => {
     try {
       const { user } = await signInWithGooglePopup();
@@ -42,10 +51,10 @@ export default function LoginForm() {
       notify(error, "warning", 5000);
     }
   };
-
+  // handles submission of the devextreme for. this is for manual user creation based upon the form entry
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    // if an email doesn't exist in the 'users' collection table, allow the creation of a user with data that has been entered in the form. Navigate to home page. Otherwise handle errors
     try {
       const { user } = await signInAuthUserWithEmailAndPassword(
         data.UserName,
@@ -87,7 +96,7 @@ export default function LoginForm() {
       }
     }
   };
-
+  // handling event changes in the devextreme form and storing them to appropriate data object
   const handleChange = (e) => {
     const targetField = e.dataField;
     const targetValue = e.value;
@@ -96,18 +105,11 @@ export default function LoginForm() {
       [targetField]: targetValue,
     }));
   };
-
+  // link functionality for the create account button
   const onCreateAccountClick = useCallback(() => {
     navigate("/signup");
   }, [navigate]);
-
-  const googleButtonOptions = {
-    onClick: logGoogleUser,
-    text: "Google Sign In",
-    width: "100%",
-    type: "default",
-  };
-
+  // define submit button for devextreme form
   const buttonOptions = {
     width: "100%",
     text: "Sign In",
@@ -117,7 +119,7 @@ export default function LoginForm() {
       handleSubmit();
     },
   };
-
+  // define password field in devextreme form
   const passwordOptions = {
     mode: "password",
   };

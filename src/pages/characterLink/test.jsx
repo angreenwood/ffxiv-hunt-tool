@@ -1,4 +1,6 @@
+// react import
 import React, { useState, useEffect } from "react";
+// devextreme imports
 import { LoadPanel } from "devextreme-react/load-panel";
 import Form, {
   Item,
@@ -8,7 +10,9 @@ import Form, {
   ButtonItem,
   SimpleItem,
 } from "devextreme-react/form";
+// material UI import
 import Button from "@mui/material/Button";
+// custom scss import
 import "./characterLink.scss";
 
 const Test = ({ handleBack, handleNext }) => {

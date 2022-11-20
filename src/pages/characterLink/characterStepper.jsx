@@ -1,10 +1,12 @@
 import * as React from "react";
+// material UI imports
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+// components imports
 import CharacterSearch from "./characterSearch";
 import Test from "./test";
 

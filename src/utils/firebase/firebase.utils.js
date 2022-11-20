@@ -10,7 +10,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-
+// define firebase configs - can be found in firebase console under project overview tab settings
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -22,28 +22,33 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+// google provider for google signin button
 const googleProvider = new GoogleAuthProvider();
-
+// popup that happens when google signin button is clicked
 googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
+
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
+
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
-export const db = getFirestore();
 
+export const db = getFirestore();
+// create a user from login information in the 'users' collection in firestore
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
+
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
-
+  // if user doesn't already exist, create record of data below
   if (!userSnapshot.exists()) {
     const displayName = userAuth.displayName;
     const email = userAuth.email;

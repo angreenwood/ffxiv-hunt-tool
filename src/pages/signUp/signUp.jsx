@@ -1,7 +1,9 @@
+// react imports
 import React, { useCallback, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+// user context import
 import { UserContext } from "../../contexts/user.context";
-
+// devextreme imports
 import notify from "devextreme/ui/notify";
 import Form, {
   Item,
@@ -12,29 +14,35 @@ import Form, {
   EmailRule,
   StringLengthRule,
 } from "devextreme-react/form";
-
+// firebase import
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 const SignUp = () => {
+  // init state object for user signup form
   const initialState = {
     displayName: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
+  // getting function to set current user from user context
   const { setCurrentUser } = useContext(UserContext);
+  // declaring form state object with initial values
   const [data, setData] = useState(initialState);
+  // declaring navigate for react router navigation
   const navigate = useNavigate();
+  // declaring password form field options
   const passwordOptions = {
     mode: "password",
   };
+  // defining form reset functionality for when form is submitted
   const resetFormFields = () => {
     setData(initialState);
   };
-
+  // defining onchange event for devextreme form and updating form state object
   const handleChange = (e) => {
     const targetField = e.dataField;
     const targetValue = e.value;
@@ -43,9 +51,10 @@ const SignUp = () => {
       [targetField]: targetValue,
     }));
   };
-
+  // defining form submit - if the password fields match then try to create a new user object in the 'users' firestore collection. If a user with the email does not exist, create one. If a user does exist alert that account already exists
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (data.password !== data.confirmPassword) {
       notify("password does not match", "warning", 5000);
       return;
@@ -56,12 +65,15 @@ const SignUp = () => {
         data.email,
         data.password
       );
+
       await createUserDocumentFromAuth(user, { displayName: data.displayName });
+
       resetFormFields();
       setCurrentUser(user);
       navigate("/");
     } catch (error) {
       resetFormFields();
+
       if (error.code === "auth/email-already-in-use") {
         notify(
           {

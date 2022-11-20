@@ -1,37 +1,40 @@
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore/lite";
+// google firestore import
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import React, { useState, useEffect } from "react";
+// devextreme import
 import Form, {
   Item,
   GroupItem,
   ColCountByScreen,
   Label,
-  ButtonItem,
   SimpleItem,
 } from "devextreme-react/form";
-import { Button } from "devextreme-react/button";
-import { Popup, Position, ToolbarItem } from "devextreme-react/popup";
-import "./home.scss";
+import { Popup } from "devextreme-react/popup";
 import { LoadPanel } from "devextreme-react/load-panel";
+// custom scss import
+import "./home.scss";
 
 export default function Home() {
+  // init loading wheel state
   const [loading, setLoading] = useState(true);
+  // init formdata state
   const [data, setData] = useState({
     searchData: "",
   });
+  // init devextreme groupitem colCount state
   const [colCount, setColCount] = useState(4);
+  // init devextreme popup state
   const [popup, setPopup] = useState(false);
+  // init devextreme form - user search data state
   const [searchResult, setSearchResult] = useState([]);
-  const [labyrinthos, setLabyrinthos] = useState([]);
-  const [filteredLabyrinthos, setFilteredLabyrinthos] = useState([]);
+  // init get all monsters from firestore database state
+  const [monsters, setMonsters] = useState([]);
+  // init filter monsters listed based on users search entry state
+  const [filteredMonsters, setFilteredMonsters] = useState([]);
+  // firestore declarations
   const db = getFirestore();
   const colRef = collection(db, "monsters");
-
+  // define popup that displays map of monster location
   const renderContent = (item) => {
     return (
       <div className="App-header">
@@ -47,6 +50,7 @@ export default function Home() {
       </div>
     );
   };
+
   const hidePopup = () => {
     setPopup(!popup);
     console.log(popup);
@@ -64,8 +68,8 @@ export default function Home() {
       snapshot.docs.forEach((doc) => {
         result.push({ ...doc.data(), id: doc.id });
       });
-      setFilteredLabyrinthos(result);
-      setLabyrinthos(result);
+      setFilteredMonsters(result);
+      setMonsters(result);
       setLoading(false);
     });
   };
@@ -79,17 +83,17 @@ export default function Home() {
     const targetValue = e.value.toLowerCase();
     console.log(targetField, targetValue);
     if (targetValue !== "") {
-      const findLabyrinthos = labyrinthos.filter(function (data) {
+      const findMonsters = monsters.filter(function (data) {
         return data.monster.toLowerCase().startsWith(targetValue);
       });
-      if (findLabyrinthos.length < 2) {
+      if (findMonsters.length < 2) {
         setColCount(1);
       } else {
-        setColCount(findLabyrinthos.length);
+        setColCount(findMonsters.length);
       }
-      setFilteredLabyrinthos(findLabyrinthos);
+      setFilteredMonsters(findMonsters);
     } else {
-      setFilteredLabyrinthos(labyrinthos);
+      setFilteredMonsters(monsters);
       setColCount(4);
     }
   };
@@ -120,7 +124,7 @@ export default function Home() {
               xs={1}
               sm={1}
             />
-            {filteredLabyrinthos.map((item, i) => (
+            {filteredMonsters.map((item, i) => (
               <Item key={i}>
                 <div className="monster-border">
                   <button onClick={(e) => clicker(item, e)}>
