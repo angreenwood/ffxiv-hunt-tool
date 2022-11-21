@@ -1,0 +1,29 @@
+.dark {
+    background-color: #282c34 !important;
+    min-height: 100vh;
+}
+
+.card-bg{
+    background-color: #323740;
+}
+
+.brd-clr{
+    border-color: #c6cace ;
+}
+
+.icon{
+    margin-left:5px;
+    &:hover{
+        background-color: #282c34;
+        cursor: pointer;
+    }
+}
+
+.job-svg{
+    filter: invert(94%) sepia(9%) saturate(107%) hue-rotate(169deg) brightness(86%) contrast(90%);
+    height:35px;
+}
+.character-info-p{
+    font-size:1.5rem;
+    margin-bottom:10px;
+}
