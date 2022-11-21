@@ -18,3 +18,15 @@
     width:100%;
     text-align: right;
 }
+
+.horn{
+    color:hsl(209, 71%, 44%);
+    &:hover{
+        background-color: #323740;
+        cursor: pointer;
+    }
+}
+
+.dx-form-group-caption{
+    color:hsl(209, 71%, 44%) !important;
+}

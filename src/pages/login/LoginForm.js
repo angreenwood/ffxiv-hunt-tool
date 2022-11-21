@@ -3,8 +3,10 @@ import React, { useCallback, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // user context import
 import { UserContext } from "../../contexts/user.context";
-// google sign in button import
-import GoogleButton from "react-google-button";
+// Icon imports
+import { FaFacebookSquare, FaGithubSquare } from "react-icons/fa";
+import { AiFillGoogleSquare } from "react-icons/ai";
+import { ImYahoo2 } from "react-icons/im";
 // devextreme imports
 import notify from "devextreme/ui/notify";
 import Form, {
@@ -14,10 +16,13 @@ import Form, {
   SimpleItem,
   RequiredRule,
   EmailRule,
+  GroupItem,
+  ColCountByScreen,
 } from "devextreme-react/form";
 // firebase import
 import {
   signInWithGooglePopup,
+  signInWithFacebookPopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
@@ -44,6 +49,17 @@ export default function LoginForm() {
   const logGoogleUser = async () => {
     try {
       const { user } = await signInWithGooglePopup();
+      const userDocRef = await createUserDocumentFromAuth(user);
+      setCurrentUser(user);
+      navigate("/");
+    } catch (error) {
+      notify(error, "warning", 5000);
+    }
+  };
+
+  const logFacebookUser = async () => {
+    try {
+      const { user } = await signInWithFacebookPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
       navigate("/");
@@ -162,16 +178,43 @@ export default function LoginForm() {
         onSubmit={logGoogleUser}
       >
         <Form>
-          <Item>
-            <div>
-              <GoogleButton
-                type="dark" // can be light or dark
-                onClick={() => {
-                  logGoogleUser();
-                }}
+          <GroupItem
+            colCount={4}
+            caption="Sign In with"
+          >
+            <ColCountByScreen
+              xs={4}
+              sm={4}
+            />
+            <Item>
+              <FaFacebookSquare
+                size={42}
+                className="horn"
+                onClick={() => logFacebookUser()}
               />
-            </div>
-          </Item>
+            </Item>
+            <Item>
+              <AiFillGoogleSquare
+                size={42}
+                className="horn"
+                onClick={() => logGoogleUser()}
+              />
+            </Item>
+            <Item>
+              <FaGithubSquare
+                size={42}
+                className="horn"
+                onClick={() => console.log("Github")}
+              />
+            </Item>
+            <Item>
+              <ImYahoo2
+                size={42}
+                className="horn"
+                onClick={() => console.log("Yahoo")}
+              />
+            </Item>
+          </GroupItem>
           <ButtonItem>
             <ButtonOptions
               text={"Create Account"}
