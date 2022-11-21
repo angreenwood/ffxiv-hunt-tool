@@ -20,7 +20,7 @@ import { AiFillEdit } from "react-icons/ai";
 import "./profile.scss";
 export default function Profile() {
   const [characterData, setCharacterData] = useState([
-    { class: "Arcanist", level: "", image: "ACN.svg" },
+    { class: "Arcanist", level: "-", image: "ACN.svg" },
     { class: "Alchemist", level: "-", image: "ALC.svg" },
     { class: "Archer", level: "-", image: "ARC.svg" },
     { class: "Armorer", level: "-", image: "ARM.svg" },
