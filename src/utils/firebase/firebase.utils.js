@@ -4,6 +4,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -24,6 +25,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 // google provider for google signin button
 const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 // popup that happens when google signin button is clicked
 googleProvider.setCustomParameters({
   prompt: "select_account",
@@ -33,10 +35,8 @@ export const auth = getAuth();
 
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
-
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
-
+export const signInWithFacebookPopup = () =>
+  signInWithPopup(auth, facebookProvider);
 export const db = getFirestore();
 // create a user from login information in the 'users' collection in firestore
 export const createUserDocumentFromAuth = async (
