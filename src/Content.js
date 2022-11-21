@@ -7,6 +7,7 @@ import Help from "./pages/help/help";
 import LoginForm from "./pages/login/LoginForm";
 import Profile from "./pages/profile/profile";
 import SignUp from "./pages/signUp/signUp";
+import Privacy from "./pages/privacy/privacyStatement";
 // passing user object to content to check if user is logged in. conditionally rendering routes based on whether a user is logged in
 export default function Content({ user }) {
   return (
@@ -45,6 +46,10 @@ export default function Content({ user }) {
       <Route
         path="/signup"
         element={<SignUp />}
+      />
+      <Route
+        path="/privacy"
+        element={<Privacy />}
       />
     </Routes>
   );

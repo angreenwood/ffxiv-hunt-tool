@@ -222,6 +222,11 @@ export default function LoginForm() {
               onClick={onCreateAccountClick}
             />
           </ButtonItem>
+          <Item>
+            <div>
+              <Link to={"/privacy"}>Privacy Statement</Link>
+            </div>
+          </Item>
         </Form>
       </form>
     </div>
