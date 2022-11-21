@@ -1,10 +1,11 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  GithubAuthProvider,
+  OAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -23,9 +24,11 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-// google provider for google signin button
+// providers for sign in with buttons
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
+const githubProvider = new GithubAuthProvider();
+const yahooProvider = new OAuthProvider("yahoo.com");
 // popup that happens when google signin button is clicked
 googleProvider.setCustomParameters({
   prompt: "select_account",
@@ -37,6 +40,9 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 export const signInWithFacebookPopup = () =>
   signInWithPopup(auth, facebookProvider);
+export const signInWithGithubPopup = () =>
+  signInWithPopup(auth, githubProvider);
+export const signInWithYahooPopup = () => signInWithPopup(auth, yahooProvider);
 export const db = getFirestore();
 // create a user from login information in the 'users' collection in firestore
 export const createUserDocumentFromAuth = async (
