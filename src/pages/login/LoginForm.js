@@ -23,6 +23,8 @@ import Form, {
 import {
   signInWithGooglePopup,
   signInWithFacebookPopup,
+  signInWithGithubPopup,
+  signInWithYahooPopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
@@ -60,6 +62,28 @@ export default function LoginForm() {
   const logFacebookUser = async () => {
     try {
       const { user } = await signInWithFacebookPopup();
+      const userDocRef = await createUserDocumentFromAuth(user);
+      setCurrentUser(user);
+      navigate("/");
+    } catch (error) {
+      notify(error, "warning", 5000);
+    }
+  };
+
+  const logGithubUser = async () => {
+    try {
+      const { user } = await signInWithGithubPopup();
+      const userDocRef = await createUserDocumentFromAuth(user);
+      setCurrentUser(user);
+      navigate("/");
+    } catch (error) {
+      notify(error, "warning", 5000);
+    }
+  };
+
+  const logYahooUser = async () => {
+    try {
+      const { user } = await signInWithYahooPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
       navigate("/");
@@ -204,14 +228,14 @@ export default function LoginForm() {
               <FaGithubSquare
                 size={42}
                 className="horn"
-                onClick={() => console.log("Github")}
+                onClick={() => logGithubUser()}
               />
             </Item>
             <Item>
               <ImYahoo2
                 size={42}
                 className="horn"
-                onClick={() => console.log("Yahoo")}
+                onClick={() => logYahooUser()}
               />
             </Item>
           </GroupItem>
