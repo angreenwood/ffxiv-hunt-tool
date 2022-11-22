@@ -81,7 +81,7 @@ const CharacterResults = ({ handleBack, handleNext }) => {
         "success",
         3000
       );
-      navigate("/profile");
+      navigate("/");
     } catch (e) {
       setLoading(false);
       hidePopup();
