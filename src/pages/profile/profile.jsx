@@ -68,17 +68,15 @@ export default function Profile() {
   const colRef = collection(db, "users");
   // query to get user object where email matches the email the user logged into the website with. this is needed  to get more user info that is stored in the 'users' collection in the firestore.
   const getData = async () => {
-    const q = query(colRef, where("email", "==", currentUser.email));
+    const q = query(colRef, where("uid", "==", localStorage.getItem("UID")));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshotss
       setUser({ ...doc.data(), id: doc.id });
     });
     setLoading(false);
   };
   useEffect(() => {
     getData();
-    characterData.map((item) => console.log(item.class));
   }, []);
 
   if (!loading) {
@@ -89,23 +87,20 @@ export default function Profile() {
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-4 flex justify-center">
-                  <div className="relative">
+                  <div className="relative mt-12">
                     <CgProfile size="150" />
                   </div>
                 </div>
-                <div className="text-center mt-12 ">
+                <div className="text-center mt-12">
                   <h3 className="text-xl font-semibold leading-normal mb-2">
                     {user.displayName}
                     <AiFillEdit className="inline icon" />
                   </h3>
 
-                  <div className="text-sm leading-normal mt-0 mb-2 font-bold uppercase">
-                    Server <AiFillEdit className="inline icon" />
+                  <div className="text-sm leading-normal mt-0 mb-6 font-bold uppercase">
+                    Server
                   </div>
-                  <div className="mb-2 mt-10">
-                    Description <AiFillEdit className="inline icon" />
-                  </div>
-                  <Form className="monster-section">
+                  <Form>
                     <Item>
                       <em>
                         <p className="character-info-p">Character Info</p>
