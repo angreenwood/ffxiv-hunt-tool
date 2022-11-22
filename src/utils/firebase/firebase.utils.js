@@ -58,13 +58,17 @@ export const createUserDocumentFromAuth = async (
   if (!userSnapshot.exists()) {
     const displayName = userAuth.displayName;
     const email = userAuth.email;
+    const uid = userAuth.uid;
     const createdAt = new Date();
+    const ffxivId = null;
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
+        uid,
+        ffxivId,
         ...additionalInformation,
       });
     } catch (error) {

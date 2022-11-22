@@ -8,7 +8,7 @@ import Form, {
 
 import "./characterLink.scss";
 
-const HuntSelection = ({ handleBack, handleNext }) => {
+const CharacterSearch = ({ handleBack, handleNext }) => {
   const [data, setData] = useState({
     CharacterName: "",
     Server: "",
@@ -96,4 +96,4 @@ const HuntSelection = ({ handleBack, handleNext }) => {
   );
 };
 
-export default HuntSelection;
+export default CharacterSearch;

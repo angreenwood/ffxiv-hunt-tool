@@ -18,20 +18,27 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import OutsideClickHandler from "react-outside-click-handler";
-export default function Example() {
+export default function Example({ user }) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [openNav, setOpenNav] = useState(false);
   const signOutHandler = async () => {
     setOpenNav(false);
     await signOutUser();
     setCurrentUser(null);
+    localStorage.removeItem("UID");
   };
   useEffect(() => {
+    if (localStorage.getItem("UID")) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
-  }, []);
+  }, [currentUser, loggedIn]);
   const handleLinkClick = () => {
     setOpenNav(false);
   };
@@ -74,7 +81,7 @@ export default function Example() {
           Hunt
         </Link>
       </Typography>
-      {currentUser ? (
+      {loggedIn ? (
         <Typography
           as="li"
           variant="small"
@@ -88,7 +95,7 @@ export default function Example() {
           </Link>
         </Typography>
       ) : null}
-      {currentUser ? (
+      {loggedIn ? (
         <Typography
           as="li"
           variant="small"

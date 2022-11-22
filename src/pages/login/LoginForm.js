@@ -34,7 +34,7 @@ import "./LoginForm.scss";
 export default function LoginForm() {
   // init state
   const initialState = {
-    UserName: "",
+    Email: "",
     Password: "",
   };
   // init data for devextreme form
@@ -53,6 +53,7 @@ export default function LoginForm() {
       const { user } = await signInWithGooglePopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -64,6 +65,7 @@ export default function LoginForm() {
       const { user } = await signInWithFacebookPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -75,6 +77,7 @@ export default function LoginForm() {
       const { user } = await signInWithGithubPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -86,6 +89,7 @@ export default function LoginForm() {
       const { user } = await signInWithYahooPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -97,11 +101,12 @@ export default function LoginForm() {
     // if an email doesn't exist in the 'users' collection table, allow the creation of a user with data that has been entered in the form. Navigate to home page. Otherwise handle errors
     try {
       const { user } = await signInAuthUserWithEmailAndPassword(
-        data.UserName,
+        data.Email,
         data.Password
       );
       resetFormFields();
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       switch (error.code) {
@@ -109,7 +114,7 @@ export default function LoginForm() {
           resetFormFields();
           notify(
             {
-              message: "Incorrect username or password",
+              message: "Incorrect Email or password",
               width: 300,
               shading: false,
               position: "top center",
@@ -173,10 +178,10 @@ export default function LoginForm() {
           onFieldDataChanged={handleChange}
         >
           <SimpleItem
-            dataField="UserName"
+            dataField="Email"
             editorType="dxTextBox"
           >
-            <RequiredRule message="Please enter username" />
+            <RequiredRule message="Please enter Email" />
             <EmailRule message="Please enter vaild email" />
           </SimpleItem>
           <SimpleItem

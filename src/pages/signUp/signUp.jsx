@@ -70,6 +70,7 @@ const SignUp = () => {
 
       resetFormFields();
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       resetFormFields();
