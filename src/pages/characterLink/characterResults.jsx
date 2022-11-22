@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 // custom scss import
 import "./characterLink.scss";
 
-const Test = ({ handleBack, handleNext }) => {
+const CharacterResults = ({ handleBack, handleNext }) => {
   const [serverList, setServerList] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -39,12 +39,14 @@ const Test = ({ handleBack, handleNext }) => {
     text: "Back",
     type: "default",
     useSubmitBehavior: true,
+    width: "100%",
     onClick: handleBack,
   };
 
   if (!loading && serverList.length > 0) {
     return (
-      <div className="App-header">
+      <div className="App-header character-select">
+        <h3 className="page-title">Search Results</h3>
         <Form className="monster-section">
           <GroupItem colCount={4}>
             <ColCountByScreen
@@ -61,14 +63,27 @@ const Test = ({ handleBack, handleNext }) => {
                   />
                   <h3 className="center title">{item.Name}</h3>
                   <p className="center description">{item.Server}</p>
+                  <Button
+                    onClick={() => {
+                      console.log(item.ID);
+                    }}
+                  >
+                    Link Character
+                  </Button>
                 </div>
               </Item>
             ))}
           </GroupItem>
-          <ButtonItem
-            horizontalAlignment="right"
-            buttonOptions={buttonOptions}
-          />
+          <GroupItem>
+            <Item>
+              <Button
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
+              </Button>
+            </Item>
+          </GroupItem>
         </Form>
       </div>
     );
@@ -102,4 +117,4 @@ const Test = ({ handleBack, handleNext }) => {
   }
 };
 
-export default Test;
+export default CharacterResults;

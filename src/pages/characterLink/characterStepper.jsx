@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 // components imports
 import CharacterSearch from "./characterSearch";
-import Test from "./test";
+import CharacterResults from "./characterResults";
 
 const steps = ["Character Search", ["Test"]];
 
@@ -63,7 +63,7 @@ export default function HorizontalLinearStepper() {
         );
       case 1:
         return (
-          <Test
+          <CharacterResults
             handleNext={handleNext}
             handleBack={handleBack}
           />
