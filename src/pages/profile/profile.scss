@@ -20,10 +20,12 @@
 }
 
 .job-svg{
-    filter: invert(94%) sepia(9%) saturate(107%) hue-rotate(169deg) brightness(86%) contrast(90%);
-    height:35px;
+    height:50px;
 }
 .character-info-p{
     font-size:1.5rem;
     margin-bottom:10px;
+}
+.player-avatar{
+    border-radius: 50%;
 }
