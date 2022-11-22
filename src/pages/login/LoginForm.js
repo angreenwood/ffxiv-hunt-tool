@@ -53,6 +53,7 @@ export default function LoginForm() {
       const { user } = await signInWithGooglePopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -64,6 +65,7 @@ export default function LoginForm() {
       const { user } = await signInWithFacebookPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -75,6 +77,7 @@ export default function LoginForm() {
       const { user } = await signInWithGithubPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -86,6 +89,7 @@ export default function LoginForm() {
       const { user } = await signInWithYahooPopup();
       const userDocRef = await createUserDocumentFromAuth(user);
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       notify(error, "warning", 5000);
@@ -102,6 +106,7 @@ export default function LoginForm() {
       );
       resetFormFields();
       setCurrentUser(user);
+      localStorage.setItem("UID", user.uid);
       navigate("/");
     } catch (error) {
       switch (error.code) {
