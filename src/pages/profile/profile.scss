@@ -19,7 +19,7 @@
     }
 }
 
-.job-svg{
+.job-img{
     height:50px;
 }
 .character-info-p{
@@ -28,4 +28,9 @@
 }
 .player-avatar{
     border-radius: 50%;
+}
+.job-list{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
 }

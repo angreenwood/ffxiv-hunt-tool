@@ -19,48 +19,11 @@ import { CgProfile } from "react-icons/cg";
 import { AiFillEdit } from "react-icons/ai";
 import "./profile.scss";
 export default function Profile() {
-  const [characterData, setCharacterData] = useState([
-    { class: "Arcanist", level: "-", image: "ACN.svg" },
-    { class: "Alchemist", level: "-", image: "ALC.svg" },
-    { class: "Archer", level: "-", image: "ARC.svg" },
-    { class: "Armorer", level: "-", image: "ARM.svg" },
-    { class: "Astrologan", level: "-", image: "AST.svg" },
-    { class: "BlackMage", level: "-", image: "BLM.svg" },
-    { class: "BlueMage", level: "-", image: "BLU.svg" },
-    { class: "Bard", level: "-", image: "BRD.svg" },
-    { class: "Blacksmith", level: "-", image: "BSM.svg" },
-    { class: "Botanist", level: "-", image: "BTN.svg" },
-    { class: "Conjurer", level: "-", image: "CNJ.svg" },
-    { class: "Carpenter", level: "-", image: "CRP.svg" },
-    { class: "Culinarian", level: "-", image: "CUL.svg" },
-    { class: "Dragoon", level: "-", image: "DRG.svg" },
-    { class: "DarkKnight", level: "-", image: "DRK.svg" },
-    { class: "Fisher", level: "-", image: "FSH.svg" },
-    { class: "Gladiator", level: "-", image: "GLA.svg" },
-    { class: "Goldsmith", level: "-", image: "GSM.svg" },
-    { class: "Lancer", level: "-", image: "LNC.svg" },
-    { class: "Leatherworker", level: "-", image: "LTW.svg" },
-    { class: "Mechanist", level: "-", image: "MCH.svg" },
-    { class: "Miner", level: "-", image: "MIN.svg" },
-    { class: "Monk", level: "-", image: "MNK.svg" },
-    { class: "Marauder", level: "-", image: "MRD.svg" },
-    { class: "Ninja", level: "-", image: "NIN.svg" },
-    { class: "Pugilist", level: "-", image: "PGL.svg" },
-    { class: "Paladin", level: "-", image: "PLD.svg" },
-    { class: "RedMage", level: "-", image: "RDM.svg" },
-    { class: "Rogue", level: "-", image: "ROG.svg" },
-    { class: "Samurai", level: "-", image: "SAM.svg" },
-    { class: "Scholar", level: "-", image: "SCH.svg" },
-    { class: "Summoner", level: "-", image: "SMN.svg" },
-    { class: "Thaumaturge", level: "-", image: "THM.svg" },
-    { class: "Warrior", level: "-", image: "WAR.svg" },
-    { class: "WhiteMage", level: "-", image: "WHM.svg" },
-    { class: "Weaver", level: "-", image: "WVR.svg" },
-  ]);
   const [playerData, setPlayerData] = useState();
   const [server, setServer] = useState();
   const [playerName, setPlayerName] = useState();
   const [playerAvatar, setPlayerAvatar] = useState();
+  const [freeCompany, setFreeCompany] = useState();
   // init current user from context
   const { currentUser } = useContext(UserContext);
   // defining user object
@@ -75,10 +38,12 @@ export default function Profile() {
     fetch("https://xivapi.com/character/" + ffxivId)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setServer(data.Character.Server);
         setPlayerName(data.Character.Name);
         setPlayerAvatar(data.Character.Avatar);
         setPlayerData(data.Character.ClassJobs);
+        setFreeCompany(data.Character.FreeCompanyName);
         setLoading(false);
       })
       .catch((error) => {
@@ -120,38 +85,35 @@ export default function Profile() {
                     </div>
                   </div>
                   <div className="text-center mt-12">
-                    <h3 className="text-xl font-semibold leading-normal mb-2">
+                    <h3 className="text-xl font-semibold leading-normal mb-1">
                       {playerName}
                     </h3>
-
                     <div className="text-sm leading-normal mt-0 mb-6 font-bold uppercase">
+                      <p>
+                        <em>{freeCompany}</em>
+                      </p>
                       {server}
                     </div>
-                    <Form>
-                      <Item>
-                        <em>
-                          <p className="character-info-p">Character Info</p>
-                        </em>
-                      </Item>
-                      <GroupItem colCount={4}>
-                        <ColCountByScreen
-                          xs={4}
-                          sm={4}
-                        />
-                        {playerData.map((item, i) => (
-                          <Item key={i}>
-                            <div>
-                              <img
-                                src={"./images/jobs/" + item.JobID + ".png"}
-                                alt={item.image}
-                                className="job-svg center"
-                              />
-                              <p className="center description">{item.Level}</p>
-                            </div>
-                          </Item>
-                        ))}
-                      </GroupItem>
-                    </Form>
+                    <Item>
+                      <em>
+                        <p className="character-info-p">Character Info</p>
+                      </em>
+                    </Item>
+                    <div class="grid grid-cols-4 gap-4">
+                      {playerData.map((item, i) => (
+                        <div
+                          className="job-list"
+                          key={i}
+                        >
+                          <img
+                            src={"./images/jobs/" + item.JobID + ".png"}
+                            alt={item.image}
+                            className="job-img"
+                          />
+                          <p className="center description">{item.Level}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>{" "}
                 <div className="flex justify-center py-4 lg:pt-4 pt-8"></div>
