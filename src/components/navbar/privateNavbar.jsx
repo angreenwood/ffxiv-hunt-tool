@@ -5,8 +5,8 @@ import React, {
   useContext,
   useCallback,
 } from "react";
-import { UserContext } from "../contexts/user.context";
-import { signOutUser } from "../utils/firebase/firebase.utils";
+import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { GiHuntingHorn } from "react-icons/gi";
 import "./navbar.scss";
 import { Outlet, Link } from "react-router-dom";
@@ -18,7 +18,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import OutsideClickHandler from "react-outside-click-handler";
-export default function Example({ user }) {
+export default function PrivateNavbar() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useState(false);
   const [openNav, setOpenNav] = useState(false);
@@ -81,47 +81,30 @@ export default function Example({ user }) {
           Hunt
         </Link>
       </Typography>
-      {loggedIn ? (
-        <Typography
-          as="li"
-          variant="small"
+      <Typography
+        as="li"
+        variant="small"
+      >
+        <Link
+          to="/profile"
+          className="flex items-center"
+          onClick={handleLinkClick}
         >
-          <Link
-            to="/profile"
-            className="flex items-center"
-            onClick={handleLinkClick}
-          >
-            Profile
-          </Link>
-        </Typography>
-      ) : null}
-      {loggedIn ? (
-        <Typography
-          as="li"
-          variant="small"
+          Profile
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+      >
+        <Link
+          to="/"
+          className="flex items-center"
+          onClick={signOutHandler}
         >
-          <Link
-            to="/"
-            className="flex items-center"
-            onClick={signOutHandler}
-          >
-            Sign Out
-          </Link>
-        </Typography>
-      ) : (
-        <Typography
-          as="li"
-          variant="small"
-        >
-          <Link
-            to="/login"
-            className="flex items-center"
-            onClick={handleLinkClick}
-          >
-            Sign In
-          </Link>
-        </Typography>
-      )}
+          Sign Out
+        </Link>
+      </Typography>
       <Outlet />
     </ul>
   );
