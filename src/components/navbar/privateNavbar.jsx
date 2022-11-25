@@ -74,7 +74,7 @@ export default function PrivateNavbar() {
         variant="small"
       >
         <Link
-          to="/"
+          to="/hunt"
           className="flex items-center"
           onClick={handleLinkClick}
         >

@@ -1,79 +1,19 @@
-.center{
-    text-align: center;
-    margin:auto;
+.logo{
+    margin-top:10%;
 }
 
-
-.title{
-    color: hsl(209, 71%, 44%);
-    font-size:1.3rem;
-    max-width:200px;
+.home-post{
+    background-color:#323740;
 }
-
-.description{
-    font-size:.8rem;
-    color:white;
-}
-.monster-border{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top:5px;
-    margin-bottom:40px;
-    border: 1px solid hsl(209, 71%, 44%);
-    border-radius: 10%;
-    padding:10px 0 10px 0;
-    min-height:350px !important;
-    min-width:280px !important;
-}
-
-.monster-img{
-    max-width:250px;
-    max-height:250px;
-}
-
-
-.zone{
-    text-decoration-color: hsl(209, 71%, 44%) !important;
-    text-decoration: underline;
-}
-
-.monster-section{
-    margin-top:5rem;
-}
-
-.searchbar{
-margin-top:30px;
-}
-
-.map-img{
-
-    object-fit: contain;
-}
-.dx-popup-content {
-    padding:0 !important;
-}
-.zone-h1{
-    text-align: center;
-    font-size:2rem;
-    padding:5px;
-    text-align: center;
-    color:hsl(209, 71%, 44%);
-}
-.monster-h1{
-    text-align: center;
-    font-size:1.2rem;
-    padding-bottom:5px;
-    text-align: center;
-}
-
-.dx-popup-title.dx-toolbar {
+.home{
     background-color: #282c34;
-    border-bottom: 1px solid hsl(209, 71%, 44%);
+    height: 100vh;
 }
 
-.dx-icon-close::before{
-    color:white;
+.project-list{
+    list-style-type: circle;
+    padding-left:2%;
 }
-
-
+.header{
+    color: hsl(209deg, 71%, 44%) !important;
+}

@@ -2,6 +2,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 // pages - components imports
 import Home from "./pages/home/home";
+import Hunt from "./pages/hunt/hunt";
 import Help from "./pages/help/help";
 import LoginForm from "./pages/login/LoginForm";
 import SignUp from "./pages/signUp/signUp";
@@ -15,6 +16,10 @@ export default function ProtectedContent() {
       <Route
         path="/"
         element={<Home />}
+      />
+      <Route
+        path="/hunt"
+        element={<Hunt />}
       />
       <Route
         path="/huntselection"
