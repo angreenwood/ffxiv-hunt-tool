@@ -6,9 +6,6 @@ const home = () => {
     <section className="home dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-          <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight text-gray-900 header">
-            Wiki Docs
-          </h2>
           <img
             src="./images/Logo.png"
             alt="Main-Logo"
@@ -61,9 +58,19 @@ const home = () => {
             <li>Netlify</li>
           </ul>
           <p className="mt-1 mb-5 font-light text-gray-500 dark:text-gray-400">
-            This project is heavily influenced by the amazing folks over at
-            FFXIVHunt & also utilizes XIVAPI. I intended for this to strictly be
-            a representation of React / Firebase capabilities.
+            This project is heavily influenced by the amazing folks over at{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://ffxivhunt.com/"
+              className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+            >
+              FFXIVhunt
+            </a>{" "}
+            & also utilizes XIVAPI. I intended for this to strictly be a
+            representation of React / Firebase capabilities. Images found on the
+            Hunt page including Monsters & Maps were constructed by FFXIVhunt
+            and should be duly credited.
           </p>
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
@@ -76,14 +83,6 @@ const home = () => {
                 Http Lovecraft - Exodus
               </span>
             </div>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://ffxivhunt.com/"
-              className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
-            >
-              FFXIVhunt
-            </a>
           </div>
         </article>
       </div>
