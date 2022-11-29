@@ -13,7 +13,7 @@ const home = () => {
           />
           <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
             <em>
-              Art & logos are registered trademarks of Square Enix Holdings.
+              Art & logos are registered trademarks of Square Enix Holdings..
             </em>
           </p>
         </div>
