@@ -22,6 +22,7 @@ import "./characterLink.scss";
 
 const CharacterResults = ({ handleBack, handleNext }) => {
   const [serverList, setServerList] = useState({});
+  const [resultLength, setResultLength] = useState(4);
   const [loading, setLoading] = useState(true);
   const [popup, setPopup] = useState(false);
   const navigate = useNavigate();
@@ -37,6 +38,10 @@ const CharacterResults = ({ handleBack, handleNext }) => {
       .then((response) => response.json())
       .then((data) => {
         setServerList(data.Results);
+        if (data.Results.length < 5) {
+          setResultLength(data.Results.length);
+        }
+
         setLoading(false);
       });
   }, []);
@@ -121,7 +126,7 @@ const CharacterResults = ({ handleBack, handleNext }) => {
       <div className="App-header character-select">
         <h3 className="page-title">Search Results</h3>
         <Form className="monster-section">
-          <GroupItem colCount={4}>
+          <GroupItem colCount={resultLength}>
             <ColCountByScreen
               xs={1}
               sm={1}
